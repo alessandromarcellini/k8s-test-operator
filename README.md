@@ -1,4 +1,32 @@
 # k8s-test-operator
+This small dummy project is made to better understand k8s implementation and how it can be customized.
+This project will mainly include a really simple (dummy) k8s operator and a custom proxy to intercept its communications with the api-server.
+The proxy will then expose the intercepted logs and metrics in order for the user to analyze them and have a better understanding of how kubernetes works internally.
+
+
+### Next steps:
+- test the crd and operator that have been created;
+- log inside the reconciliation loop and other parts of the operator that can be usefull;
+- create the proxy;
+- make the operator talk to the proxy instead of directly to the api-server;
+- expose the collected metrics and analyize them.
+
+<!-- 
+| Metric                       | Description               |
+| ---------------------------- | ------------------------- |
+| reconcile_total              | number of reconciliations |
+| crd_updates_total            | CRD modifications         |
+| api_requests_total           | requests through proxy    |
+| reconcile_duration_seconds   | reconcile latency         |
+| failed_reconciliations_total | errors                    |
+| resource_generation          | observed generations      | -->
+
+
+
+
+
+<!-- 
+# k8s-test-operator
 // TODO(user): Add simple overview of use/purpose
 
 ## Description
@@ -132,4 +160,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
+ -->
