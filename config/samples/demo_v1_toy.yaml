@@ -1,0 +1,9 @@
+apiVersion: demo.test.com/v1
+kind: Toy
+metadata:
+  labels:
+    app.kubernetes.io/name: k8s-test-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: toy-sample
+spec:
+  replicas: 3
