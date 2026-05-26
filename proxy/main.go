@@ -10,11 +10,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/joho/godotenv"
+
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-const target = "https://192.168.49.2:8443"
+var target string
 
 // --- metrics ---
 
@@ -54,6 +56,11 @@ var (
 )
 
 func init() {
+	if err := godotenv.Load(".env.dev"); err != nil {
+		log.Println("no .env.dev found, using system env")
+	}
+	target = os.Getenv("TARGET")
+
 	prometheus.MustRegister(requestsTotal, requestDuration, watchEventsTotal, streamBytesTotal)
 }
 
@@ -82,8 +89,8 @@ func resourceFromPath(path string) string {
 
 func main() {
 	// to enable tls
-	certFile := os.ExpandEnv("$HOME/.minikube/profiles/minikube/client.crt")
-	keyFile := os.ExpandEnv("$HOME/.minikube/profiles/minikube/client.key")
+	certFile := os.Getenv("CERT_FILE_PATH")
+	keyFile := os.Getenv("KEY_FILE_PATH")
 
 	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 	if err != nil {

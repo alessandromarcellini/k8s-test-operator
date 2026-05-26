@@ -1,4 +1,5 @@
 # Binaries for programs and plugins
+*.env*
 *.exe
 *.exe~
 *.dll
@@ -28,3 +29,6 @@ go.work
 
 # Kubeconfig might contain secrets
 *.kubeconfig
+
+# cert files
+*/cert/
