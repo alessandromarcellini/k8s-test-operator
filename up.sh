@@ -6,6 +6,12 @@ kubectl delete -f ./manifests/prometheus.yaml --ignore-not-found
 kubectl delete -f ./manifests/grafana.yaml --ignore-not-found
 kubectl delete -f ./manifests/grafana-dashboards-configmap.yaml --ignore-not-found
 
+#create namespace for prometheus and grafana
+kubectl create namespace monitoring
+
+# recreate grafana dashboards configmap
+kubectl create configmap grafana-dashboards   --from-file=proxy-dashboard.json=./manifests/grafana_dashboards_settings/dashboards.json   --namespace monitoring   --dry-run=client -o yaml > manifests/grafana-dashboards-configmap.yaml
+
 
 #create proxy
 cp ~/.minikube/profiles/minikube/client.crt proxy/cert/
@@ -16,9 +22,6 @@ docker build -t proxy:latest ./proxy
 minikube image load proxy:latest
 
 kubectl apply -f manifests/proxy.yaml
-
-#create namespace for prometheus and grafana
-kubectl create namespace monitoring
 
 # create prometheus
 kubectl apply -f manifests/prometheus.yaml
