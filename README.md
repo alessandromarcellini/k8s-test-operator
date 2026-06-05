@@ -5,12 +5,7 @@ The proxy will then expose the intercepted logs and metrics in order for the use
 
 
 ### Next steps:
-- test the crd and operator that have been created;
-- log inside the reconciliation loop and other parts of the operator that can be usefull;
-- create the proxy;
-- make the operator talk to the proxy instead of directly to the api-server;
-- expose the collected metrics and analyize them.
-
+- Create other metrics to be analyzed.
 <!-- 
 | Metric                       | Description               |
 | ---------------------------- | ------------------------- |
